@@ -31,12 +31,6 @@ app.listen(8081, function () {
 // Following code will call getCallback "handler function"
 // when the server recieves request in following route
 
-function sendProjData(req,res){
-    console.log(projectData);
-    res.send(projectData);
-}
-app.get('/all', sendProjData);
-
 app.post("/add",getWeather);
 async function getWeather(req, res, next) 
 {
