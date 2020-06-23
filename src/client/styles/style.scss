@@ -25,11 +25,33 @@ body{
 }
 
 #entryHolder{
+}
+
+.date{
+
+input,
+label {
+    margin: .4rem 0;
+}
+span::after {
+    padding-left: 5px;
+  }
+  input:invalid + span::after {
+    content: '✖';
+  }
+  input:valid+span::after {
+    content: '✓';
+  }
+}
+
+#date {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
 
 }
 
-#date{
-
+#tripstart {
+    margin: .4rem 0;
 }
 
 #temp{
