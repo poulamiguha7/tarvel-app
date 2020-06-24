@@ -27,67 +27,87 @@ app.listen(8081, function () {
     console.log('Travel app listening on port 8081!')
 });
 
-// Define a Route for GET request
-// Following code will call getCallback "handler function"
-// when the server recieves request in following route
+const moment = require('moment');
+moment().format();
 
 app.post("/add",getWeather);
-
 async function getWeather(req, res) 
 {
-    console.log("Getting real data from weatherbit");
-    console.log(req.body);
     const endpoint = req.body.endpoint;
     const dayleft = req.body.days;
     const image_url = req.body.image_url;
     const city_name = req.body.city_name;
     const country_name = req.body.country_name;
     const depart_date = req.body.depart_date;
+    const weather_response_type = req.body.weather_response_type;
+    const country_pixabay_url = req.body.country_pixabay_url;
 
     projectData["city"] = city_name;
     projectData["country"] = country_name;
     projectData["depart_date"] = depart_date;
     projectData["dayleft"] = dayleft;
+    projectData["weather_response_type"] = weather_response_type;
 
     // Weather Response 
     const response = await fetch(endpoint);
     try{
-         console.log(" Calling weatherbit with URL"+endpoint); 
          const allData = await response.json();
-          
-         projectData["high_temp"] = allData["data"][dayleft].high_temp;
-         projectData["low_temp"] = allData["data"][dayleft].low_temp;
-         projectData["weather_text"] = allData["data"][dayleft].weather.description; 
+         if ( weather_response_type === 'current' ) 
+          {
+            projectData["high_temp"] = allData["data"][dayleft].high_temp;
+            projectData["low_temp"] = allData["data"][dayleft].low_temp;
+            projectData["weather_text"] = allData["data"][dayleft].weather.description + " throughout the day."; 
+         }
+         else  {
+          // weather_response_type === 'historical'
+          projectData["high_temp"] = allData["data"][0].max_temp;
+          projectData["low_temp"] = allData["data"][0].min_temp;
+          projectData["weather_text"] = " "; 
+         }
     } 
     catch (error) {
       console.log("Failed calling weatherbit with URL"+endpoint);
       console.log(error);
     }
-
     // Image response
-    console.log("image request url : "+ image_url); 
-    console.log("city_name: "+ city_name); 
-    console.log("country_name: "+ country_name); 
-    console.log("depart_date: "+ depart_date); 
-    console.log("dayleft: "+ dayleft); 
-    let image_response = await fetch(image_url);
     let display_image_url = "";
+    let image_response = await fetch(image_url);
     try{
-         console.log(" Calling Pixabay with URL"+image_url); 
          let image_data = await image_response.json();
          let total_count = image_data["total"];
          if (total_count > 0) {
           display_image_url = image_data["hits"][0].previewURL;
          }
          else {
-          display_image_url = 'https://cdn.pixabay.com/photo/2016/01/09/18/27/old-1130731_150.jpg';
+                let country_image_response  = await fetch(country_pixabay_url);
+                try {
+                    let country_image_data = await country_image_response.json();
+                    let total_count = country_image_data["total"];
+                    if (total_count > 0) {
+                        display_image_url = country_image_data["hits"][0].previewURL;
+                      }
+                    else {
+                        // No Image found just display a default one!
+                        display_image_url = 'https://cdn.pixabay.com/photo/2016/01/09/18/27/old-1130731_150.jpg';
+                          }
+                      }
+                  catch(error) {
+                        console.log("Failed calling Pixabay with URL"+country_pixabay_url);
+                        console.log(error);
+                }
          }
+         // Set Pixabay URL to Projectdata
          projectData["image_url"] = display_image_url;
-
-         console.log(projectData);
     } 
     catch (error) {
       console.log("Failed calling Pixabay with URL"+endpoint);
       console.log(error);
     }
     };
+
+// Send response data to update UI
+function sendProjData(req,res){
+  console.log(projectData);
+  res.send(projectData);
+};
+app.get('/getAPIdata', sendProjData);

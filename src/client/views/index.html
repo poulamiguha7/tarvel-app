@@ -4,38 +4,41 @@
 <meta charset="UTF-8">
 <title>Poulami's Travel Application </title>
 </head>
- <body>
-<div id = "app">
-  <div class ="holder headline">
-    Simple Travel App
+<body>
+<div class="container">
+  <div class="headline">
+    <h1 id="page-title">Poulami's Travel Planner</h1>
   </div>
-  <div class ="holder zip">
-    <label for="zip">Enter Destination City</label>
-    <input type="text" id="city" placeholder="Enter Destination city">
-  </div>
-  <div class = 'date'>
-  <label for="Trip Start Date">Enter Start Date</label>
-  <input type="date" id="tripstart" name="trip-start"
-       value="YYYY-MM-DD"
-       min="2020-06-23" max="2021-07-04">
-  </div>
-  <div class ="holder feel">
-     <button id="generate" type = "submit"> Submit </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-   <div id = "temp"></div>
-   <div id = "content"></div>
-  </div>
-  </div>
-  </div>
- <!--- <script>
-    document.getElementById("zip").addEventListener("click", myFunction);
-    function myFunction() {
-    console.log("eventlistener called from myFunction")
-    }
-    </script> -->
+  <section id="form-section">
+    <div class ="user-form">
+      <label for="zip">Enter Destination City</label>
+      <input type="text" id="city" placeholder="Enter City">
+    </div>
+    <div class = 'user-form'>
+    <label for="Trip Start Date">Enter Vacation Date</label>
+    <input type="date" id="date" name="trip-start"
+         value="yyyy-MM-dd"
+         min="2020-06-24" max="2021-07-04">
+    </div>
+  </section>
+  <section id="submit-form"
+    <div class ="user-submit">
+       <button id="generate" type = "submit">Save Your Trip</button>
+    </div>
+  </section>
+  <section id="trip-section">
+    <div class="trip-info">
+      <div id="result-container">
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+      });
+  }
+ </script>
 </body>
 </html>
