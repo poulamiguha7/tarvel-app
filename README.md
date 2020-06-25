@@ -10,3 +10,43 @@ In addition, [Jest](https://jestjs.io/) is used as a testing framework.
 
 ## Advanced Extra Feature Added
 Pull in an image for the country from Pixabay API when the entered location brings up no results (good for obscure localities).
+
+## Run the application
+
+Pre-requisites : 
+install node.js
+install webpack
+install jest
+install moment
+
+Download the projects folder.
+
+Download or clone the project:
+
+git clone https://github.com/poulamiguha7/tarvel-app
+
+Install the dependencies
+
+npm install
+
+Run build for the project using the cmd as follow:
+npm run build-prod
+
+Run the server.
+npm start
+
+View the URL http://localhost:8081/ in browser.
+
+Run the testing.
+npm run test
+
+## Built With
+
+Sass - The web framework used
+Webpack - Asset Management
+Babel - JavaScript Compiler
+Node.js - JavaScript Runtime
+Express.js - Server Framework for Node.js
+Jest - Testing suit
+Service Workers - For offline capability
+
