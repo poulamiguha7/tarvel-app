@@ -27,18 +27,20 @@ git clone https://github.com/poulamiguha7/tarvel-app
 
 Install the dependencies
 
-npm install
+# npm install
 
 Run build for the project using the cmd as follow:
-npm run build-prod
+
+# npm run build-prod
 
 Run the server.
-npm start
+# npm start
 
 View the URL http://localhost:8081/ in browser.
 
 Run the testing.
-npm run test
+
+# npm run test
 
 ## Built With
 
