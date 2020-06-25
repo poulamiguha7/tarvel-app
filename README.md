@@ -13,7 +13,7 @@ Pull in an image for the country from Pixabay API when the entered location brin
 
 ## Run the application
 
-Pre-requisites : 
+#### Pre-requisites : 
 install node.js
 install webpack
 install jest
@@ -25,22 +25,20 @@ Download or clone the project:
 
 git clone https://github.com/poulamiguha7/tarvel-app
 
-Install the dependencies
+#### Install the dependencies
 
-# npm install
+##### npm install
 
 Run build for the project using the cmd as follow:
-
-# npm run build-prod
+##### npm run build-prod
 
 Run the server.
-# npm start
+##### npm start
 
 View the URL http://localhost:8081/ in browser.
 
 Run the testing.
-
-# npm run test
+##### npm run test
 
 ## Built With
 
