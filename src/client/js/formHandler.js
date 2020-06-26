@@ -12,7 +12,7 @@ const getimage_url = "https://pixabay.com/api/?key=17181884-9b247fd6e2afaf1b2bc5
 document.getElementById('generate').addEventListener('click',performAction);
 
 //Write the EventListener handler function to update UI based on user input
-function performAction(e){
+async function performAction(e){
     // Get User inputs
     const city = document.getElementById('city').value;
     if (city === undefined || city === null)
@@ -21,6 +21,7 @@ function performAction(e){
     }
     const user_date = document.querySelector('input[type="date"]').value;
     const user_date_formatted = Client.convertDate_to_String(user_date);
+
     // Get counter
     let daysLeft = Client.getDaysLeft(user_date_formatted);
     if (daysLeft <= 0 ) {

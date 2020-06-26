@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // Require Express to run server and routes
 const  express = require('express');
@@ -29,7 +29,6 @@ app.listen(8081, function () {
 
 const moment = require('moment');
 moment().format();
-
 app.post("/add",getWeather);
 async function getWeather(req, res) 
 {
@@ -111,3 +110,11 @@ function sendProjData(req,res){
   res.send(projectData);
 };
 app.get('/getAPIdata', sendProjData);
+
+app.get('/test', function(req, res) {
+  res.json({
+    status : 200
+  })
+})
+
+module.exports = app;
