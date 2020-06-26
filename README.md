@@ -19,6 +19,10 @@ install node.js
 install webpack
 install jest
 install moment
+install supertest
+
+## Following has to be installed for testing
+npm install --save @babel/polyfill
 
 Download the projects folder.
 
