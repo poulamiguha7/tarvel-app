@@ -55,8 +55,6 @@ Express.js - Server Framework for Node.js
 Jest - Testing suit
 Service Workers - For offline capability
 
-||||||| merged common ancestors
-=======
 
 ## Run the application
 
@@ -97,4 +95,3 @@ Express.js - Server Framework for Node.js
 Jest - Testing suit
 Service Workers - For offline capability
 
->>>>>>> dc57884334cc8a961e17478fcac3cc4750a0f219
