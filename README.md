@@ -20,6 +20,13 @@ install webpack
 install jest
 install moment
 
+### Following will be needed for testing 
+
+npm install --save @babel/polyfill
+npm install --save @babel/runtime 
+npm install --save-dev @babel/plugin-transform-runtime
+npm install supertest --save-dev
+
 Download the projects folder.
 
 Download or clone the project:
